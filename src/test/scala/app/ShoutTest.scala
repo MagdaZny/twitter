@@ -1,14 +1,10 @@
 package app
 
-import app.helpers.Faker
+import app.helpers.Test
 import org.mockito.ArgumentMatchers._
 import org.mockito.Mockito._
-import org.scalatest.mockito.MockitoSugar
-import org.scalatest.{Matchers, WordSpec}
 
-import scala.concurrent.Future
-
-class ShoutTest extends WordSpec with Matchers with MockitoSugar with Faker{
+class ShoutTest extends Test{
 
   "Shout should format twitts" in {
     val client = mock[TwitterClient]

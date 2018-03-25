@@ -1,8 +1,5 @@
 package app
 
-import scala.concurrent.Await
-import scala.concurrent.duration._
-
 class Shout(client: TwitterClient) {
 
   def apply(user: String, number: String) = {
