@@ -2,14 +2,15 @@ package app
 
 import java.net.HttpURLConnection._
 
+import akka.stream.ActorMaterializer
 import play.api.libs.json.{JsValue, Json}
 import play.api.libs.ws.StandaloneWSRequest
 import play.api.libs.ws.ahc.StandaloneAhcWSClient
 
 import scala.concurrent.duration._
-import scala.concurrent.{Await, Future}
+import scala.concurrent.{Await, ExecutionContext, Future}
 
-class TwitterClient(baseUrl: String, token: String)(implicit client: StandaloneAhcWSClient) {
+class TwitterClient(baseUrl: String, token: String)(implicit client: StandaloneAhcWSClient, materializer: ActorMaterializer, ec: ExecutionContext) {
 
   def call(user: String, numberOfTwitts: String): Either[String, Seq[String]]=
   {
@@ -34,5 +35,5 @@ class TwitterClient(baseUrl: String, token: String)(implicit client: StandaloneA
 }
 
 object TwitterClient {
-  def apply(baseUrl: String = "https://api.twitter.com", token: String)(implicit client: StandaloneAhcWSClient): TwitterClient = new TwitterClient(baseUrl, token)(client)
+  def apply(baseUrl: String = "https://api.twitter.com", token: String)(implicit client: StandaloneAhcWSClient, materializer: ActorMaterializer, executionContext: ExecutionContext): TwitterClient = new TwitterClient(baseUrl, token)(client, materializer, executionContext)
 }
