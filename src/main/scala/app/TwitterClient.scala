@@ -35,5 +35,4 @@ class TwitterClient(baseUrl: String, token: String)(implicit client: StandaloneA
 
 object TwitterClient {
   def apply(baseUrl: String = "https://api.twitter.com", token: String)(implicit client: StandaloneAhcWSClient): TwitterClient = new TwitterClient(baseUrl, token)(client)
-
 }

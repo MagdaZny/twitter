@@ -13,7 +13,6 @@ class TwitterClientTest extends Test with ClientParameters {
     wireMockServer.start()
 
   }
-
   override def afterEach {
     wireMockServer.stop()
   }
