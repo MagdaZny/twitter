@@ -2,19 +2,17 @@ package app
 
 import java.net.HttpURLConnection._
 
-import akka.stream.ActorMaterializer
 import play.api.libs.json.{JsValue, Json}
-import play.api.libs.ws.StandaloneWSRequest
 import play.api.libs.ws.ahc.StandaloneAhcWSClient
 
 import scala.concurrent.duration._
-import scala.concurrent.{Await, ExecutionContext, Future}
+import scala.concurrent.{Await, ExecutionContext}
 
-class TwitterClient(baseUrl: String, token: String)(implicit client: StandaloneAhcWSClient, materializer: ActorMaterializer, ec: ExecutionContext) {
+class TwitterClient(baseUrl: String, token: String) (implicit client: StandaloneAhcWSClient, ec: ExecutionContext) {
 
   def call(user: String, numberOfTwitts: String): Either[String, Seq[String]]=
   {
-    val t: Future[StandaloneWSRequest#Response] = client.url(baseUrl + "/1.1/statuses/user_timeline.json")
+    val t = client.url(baseUrl + "/1.1/statuses/user_timeline.json")
       .withQueryStringParameters(("screen_name", user), ("count", numberOfTwitts))
       .addHttpHeaders("Authorization" -> s"Bearer $token")
       .get()
@@ -35,5 +33,5 @@ class TwitterClient(baseUrl: String, token: String)(implicit client: StandaloneA
 }
 
 object TwitterClient {
-  def apply(baseUrl: String = "https://api.twitter.com", token: String)(implicit client: StandaloneAhcWSClient, materializer: ActorMaterializer, executionContext: ExecutionContext): TwitterClient = new TwitterClient(baseUrl, token)(client, materializer, executionContext)
+  def apply(baseUrl: String = "https://api.twitter.com", token: String)(implicit client: StandaloneAhcWSClient, executionContext: ExecutionContext): TwitterClient = new TwitterClient(baseUrl, token)(client, executionContext)
 }

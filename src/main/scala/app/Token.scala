@@ -2,21 +2,18 @@ package app
 
 import java.nio.charset.StandardCharsets
 
-import akka.actor.ActorSystem
-import akka.stream.ActorMaterializer
 import com.google.common.io.BaseEncoding
-import play.api.libs.json.{JsValue, Json}
+import play.api.libs.json.Json
 import play.api.libs.ws.ahc.StandaloneAhcWSClient
 
 import scala.concurrent.duration._
-import scala.concurrent.{Await, ExecutionContext, Future}
+import scala.concurrent.{Await, ExecutionContext}
 
-class Token(baseUrl: String)(implicit client: StandaloneAhcWSClient, materializer: ActorMaterializer) {
-  implicit val executionContext = materializer.executionContext
+class Token(baseUrl: String)(implicit client: StandaloneAhcWSClient, executionContext: ExecutionContext) {
 
   import Token._
 
-  def retrieve = {
+  def retrieve: String = {
 
     val response = client.url(baseUrl + "/oauth2/token")
       .withHttpHeaders(("Authorization", s"Basic $getBasicToken()"),
@@ -38,7 +35,7 @@ class Token(baseUrl: String)(implicit client: StandaloneAhcWSClient, materialize
 }
 
 object Token {
-  def apply(baseUrl: String = "https://api.twitter.com")(implicit client: StandaloneAhcWSClient, materializer: ActorMaterializer) = new Token(baseUrl)(client, materializer)
+  def apply(baseUrl: String = "https://api.twitter.com")(implicit client: StandaloneAhcWSClient, executionContext: ExecutionContext) = new Token(baseUrl)(client, executionContext)
 
   private def retrieveFromJson(result: String) = {
     val j = Json.parse(result)

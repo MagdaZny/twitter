@@ -7,6 +7,7 @@ import com.github.tomakehurst.wiremock.client.WireMock._
 class TokenTest extends Test with ClientParameters {
 
   val wireMockServer = new WireMockServer()
+  import scala.concurrent.ExecutionContext.Implicits.global
 
   override def beforeEach {
     wireMockServer.start()
@@ -14,6 +15,7 @@ class TokenTest extends Test with ClientParameters {
   override def afterEach {
     wireMockServer.stop()
   }
+
 
   "should retrieve valid token for given customer credentials" in {
     val token = new Token("http://localhost:8080")
