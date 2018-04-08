@@ -10,10 +10,10 @@ import scala.concurrent.{Await, ExecutionContext}
 
 class TwitterClient(baseUrl: String, token: String) (implicit client: StandaloneAhcWSClient, ec: ExecutionContext) {
 
-  def call(user: String, numberOfTwitts: String): Either[String, Seq[String]]=
+  def call(user: String, numberOfTwitts: Int): Either[String, Seq[String]]=
   {
     val t = client.url(baseUrl + "/1.1/statuses/user_timeline.json")
-      .withQueryStringParameters(("screen_name", user), ("count", numberOfTwitts))
+      .withQueryStringParameters(("screen_name", user), ("count", numberOfTwitts.toString))
       .addHttpHeaders("Authorization" -> s"Bearer $token")
       .get()
 

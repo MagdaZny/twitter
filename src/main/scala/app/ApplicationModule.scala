@@ -4,7 +4,6 @@ import javax.inject.Singleton
 
 import akka.actor.ActorSystem
 import akka.stream.{ActorMaterializer, ActorMaterializerSettings}
-import com.fasterxml.jackson.databind.deser.std.StringDeserializer
 import com.google.inject.{AbstractModule, Provides}
 import net.codingwell.scalaguice.ScalaModule
 import play.api.libs.ws.ahc.StandaloneAhcWSClient

@@ -9,6 +9,6 @@ object Main extends App {
   val injector = Guice.createInjector(new ApplicationModule)
   val app = injector.instance[Shout]
 
-  val shouted = app.apply("PutinRF_Eng", "4")
+  val shouted = app.apply("PutinRF_Eng", 4)
   println(shouted)
 }

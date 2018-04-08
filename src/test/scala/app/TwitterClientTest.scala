@@ -22,7 +22,7 @@ class TwitterClientTest extends Test with ClientParameters {
     "return a string if call was successfull" in {
 
       val user = randomString()
-      val numberOfTwitts = randomNumber().toString
+      val numberOfTwitts = randomNumber()
       val token = randomString(30)
       val expectedTwitts = Right(Seq("Announcing a new API status page -&gt; https://t.co/VHjrLJJPHO", "RT @TwitterDev: We’re excited to announce a change to Direct Message rate limits that gives those using the APIs the ability to respond to…", "We’re excited to announce a change to Direct Message rate limits that gives those using the APIs the ability to res… https://t.co/sMJvPcE2NM"))
       val client = TwitterClient("http://localhost:8080", token)

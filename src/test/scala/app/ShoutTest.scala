@@ -11,6 +11,6 @@ class ShoutTest extends Test{
     when(client.call(any(), any())).thenReturn(Right(Seq("first message", "Second Message")))
     val shout = new Shout(client)
 
-    shout.apply(randomString(), randomString()) should be(Seq("FIRST MESSAGE!", "SECOND MESSAGE!"))
+    shout.apply(randomString(), randomNumber()) should be(Seq("FIRST MESSAGE!", "SECOND MESSAGE!"))
   }
 }
