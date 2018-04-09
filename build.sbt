@@ -1,3 +1,4 @@
+
 name := "letShout"
 
 version := "1.0"
@@ -23,6 +24,7 @@ libraryDependencies ++= Seq(
 
 //for wiremock and scalatestplus-play compatibility
 val jettyVersion = "9.2.13.v20150730"
+
 dependencyOverrides ++= Set(
   "org.eclipse.jetty" % "jetty-server" % jettyVersion,
   "org.eclipse.jetty" % "jetty-servlet" % jettyVersion,
