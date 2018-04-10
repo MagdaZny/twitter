@@ -1,9 +1,10 @@
-
 name := "letShout"
 
 version := "1.0"
 
 scalaVersion := "2.12.1"
+
+lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
 libraryDependencies ++= Seq(
   // -- Play --
@@ -21,6 +22,8 @@ libraryDependencies ++= Seq(
   "org.apache.directory.api" % "api-i18n" % "1.0.0-M18"
 
 )
+libraryDependencies += guice
+
 
 //for wiremock and scalatestplus-play compatibility
 val jettyVersion = "9.2.13.v20150730"
@@ -41,3 +44,4 @@ dependencyOverrides ++= Set(
   "org.eclipse.jetty.websocket" % "websocket-common" % jettyVersion,
   "org.eclipse.jetty.websocket" % "websocket-client" % jettyVersion
 )
+evictionWarningOptions in update := EvictionWarningOptions.default.withWarnTransitiveEvictions(false)

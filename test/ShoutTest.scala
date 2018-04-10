@@ -3,6 +3,7 @@ package app
 import app.helpers.Test
 import org.mockito.ArgumentMatchers._
 import org.mockito.Mockito._
+import services.{Shout, TwitterClient}
 
 class ShoutTest extends Test{
 

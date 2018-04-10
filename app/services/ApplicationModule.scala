@@ -1,10 +1,9 @@
-package app
-
-import javax.inject.Singleton
+package services
 
 import akka.actor.ActorSystem
 import akka.stream.{ActorMaterializer, ActorMaterializerSettings}
 import com.google.inject.{AbstractModule, Provides}
+import javax.inject.Singleton
 import net.codingwell.scalaguice.ScalaModule
 import play.api.libs.ws.ahc.StandaloneAhcWSClient
 

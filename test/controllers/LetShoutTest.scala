@@ -1,11 +1,12 @@
 package app.controllers
 
-import app.Shout
 import app.helpers.Test
+import controllers.LetShout
 import org.mockito.Mockito._
 import play.api.mvc._
 import play.api.test.Helpers._
 import play.api.test._
+import services.Shout
 
 class LetShoutTest extends Test with Results {
 

@@ -3,6 +3,7 @@ package app
 import app.helpers.{ClientParameters, Test}
 import com.github.tomakehurst.wiremock.WireMockServer
 import com.github.tomakehurst.wiremock.client.WireMock._
+import services.TwitterClient
 
 class TwitterClientTest extends Test with ClientParameters {
   import scala.concurrent.ExecutionContext.Implicits.global

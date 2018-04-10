@@ -1,1 +1,1 @@
-GET   /letshout/:userName/:numberOfTwitts          controllers.LetShout.answer(userName: String, numberOfTwitts: Int)
+GET   /letshout          controllers.LetShout.answer(userName: String, numberOfTwitts: Int)

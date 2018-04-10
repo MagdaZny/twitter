@@ -1,4 +1,4 @@
-package app
+package services
 
 import com.google.inject.Guice
 import net.codingwell.scalaguice.InjectorExtensions._
